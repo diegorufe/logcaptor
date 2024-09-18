@@ -15,14 +15,14 @@ class LogCaptorTest {
     private DemoService demoService;
 
     @Test
-    void test(){
-       try(LogCaptor logCaptor = LogCaptor.capture(DemoService.class)){
-           demoService.demo();
+    void test() {
+        try (LogCaptor logCaptor = LogCaptor.capture(DemoService.class)) {
+            demoService.demo();
 
-           assertTrue(logCaptor.verify(Level.INFO).contains("Ent"));
+            assertTrue(logCaptor.verify(DemoService.class, Level.INFO).contains("Ent"));
 
-           assertTrue(logCaptor.verify(Level.WARN).equals("Sale"));
-       }
+            assertTrue(logCaptor.verify(DemoService.class, Level.WARN).equals("Sale"));
+        }
     }
 
 }
